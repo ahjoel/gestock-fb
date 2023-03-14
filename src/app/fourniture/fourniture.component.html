@@ -1,0 +1,126 @@
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Fourniure</h1>
+
+    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="addmodel()">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Ajouter</button>
+</div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Liste Fournitures</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Fourniture</th>
+                        <th>Catégorie</th>
+                        <th>Base</th>
+                        <th>Seuil(Qte Min)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <!-- <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Libellé</th>
+                        <th>Date création</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot> -->
+                <tbody>
+                    <tr *ngFor="let fourniture of data; let i = index;">
+                        <td>{{i+1}}</td>
+                        <td>{{fourniture.code}}</td>
+                        <td>{{fourniture.libelle}}</td>
+                        <td>{{fourniture.categorie?.libelle}}</td>
+                        <td>{{fourniture.base}}</td>
+                        <td>{{fourniture.seuil}}</td>
+                        <td>
+                            <button  class="btn btn-info btn-circle btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(i, fourniture)">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm" style="margin-left: 5px;" (click)="delete(i, fourniture)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Categorie Form Ajout Edition -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+        <div class="modal-content w-75">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">
+                    {{isedit ? 'Modification ' : 'Enregistrement '}}- Fourniture
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form [formGroup]="fournitureForm" (ngSubmit)="isedit ? update(fournitureForm) : sendata(fournitureForm)">
+                    <!-- Code input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="code">Code</label>
+                        <input type="text" id="code" formControlName="code" class="form-control" autocomplete="off" />
+                    </div>
+
+                    <!-- Libellé input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="libelle">Libellé</label>
+                        <input type="text" id="libelle" formControlName="libelle" class="form-control" autocomplete="off" />
+                    </div>
+                    
+                    <!-- Catégorie input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="category_id">Catégorie</label>
+                        <select class="form-control" formControlName="category_id" id="category_id" autocomplete="off">
+                            <option>Sélectionnez une catégorie</option>
+                            <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.libelle }}</option>
+                        </select>
+                    </div>
+                   
+                    <!-- Base input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="base">Base</label>
+                        <select class="form-control" formControlName="base" id="base" autocomplete="off">
+                            <option>Sélectionnez une base</option>
+                            <option value="CARTON">CARTON</option>
+                            <option value="BOITE">BOITE</option>
+                            <option value="UNITE">UNITE</option>
+                            <option value="LOT DE 10">LOT DE 10</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Base input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="seuil">Seuil(Qte Min)</label>
+                        <input type="number" id="seuil" formControlName="seuil" class="form-control" autocomplete="off" />
+                    </div>
+                    
+                    <!-- <input type="hidden" [value]="currentdate"  formControlName="date_creation" class="form-control" autocomplete="off" /> -->
+
+                    <!-- Submit button -->
+                    <!-- <button type="submit" class="btn btn-primary btn-block">Enregistrer</button> -->
+                    <button type="reset" class="btn btn-warning">Annuler</button>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 5px;" data-bs-dismiss="modal">{{isedit ? 'Modifier' : 'Enregistrer'}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->

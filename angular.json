@@ -25,9 +25,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
+              "src/assets/css/sb-admin-2.min.css",
+              "src/assets/css/all.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/js/sb-admin-2.min.js",
+              "src/assets/vendor/datatables/jquery.dataTables.min.js",
+              "src/assets/vendor/datatables/dataTables.bootstrap4.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

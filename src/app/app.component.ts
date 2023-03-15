@@ -80,8 +80,16 @@ export class AppComponent implements OnInit {
     })();
   }
 
+  logout() {
+    // Remove authentication token or other data that identifies the user
+    // from the application state.
+    // For example, if you are using JWT authentication, you could remove the token from the browser's local storage:
+    localStorage.removeItem('token');
 
-
-  // Initialize typescript
+    // Redirect the user to the login page or any other appropriate page.
+    this.router.navigate(['/login']);
+  }
+  
+  
   
 }

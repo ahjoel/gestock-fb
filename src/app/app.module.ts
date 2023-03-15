@@ -13,11 +13,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { FournitureComponent } from './fourniture/fourniture.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', component: AccueilComponent },
-  { path: 'categories', component: CategorieComponent },
-  { path: 'fournitures', component: FournitureComponent },
+  { path: '', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'categories', component: CategorieComponent, canActivate: [AuthGuard] },
+  { path: 'fournitures', component: FournitureComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
 ]
 
 @NgModule({
@@ -27,7 +30,8 @@ const routes: Routes = [
     AccueilComponent,
     FooterComponent,
     CategorieComponent,
-    FournitureComponent
+    FournitureComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

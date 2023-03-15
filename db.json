@@ -56,6 +56,22 @@
       "id": 2
     }
   ],
+  "users": [
+    {
+      "username": "admin",
+      "profil": "Administrateur",
+      "pseudo": "Joel Aholou",
+      "password": "admin",
+      "id": 1
+    },
+    {
+      "username": "invite",
+      "profil": "Invité",
+      "pseudo": "Invité",
+      "password": "invite",
+      "id": 2
+    }
+  ],
   "orders": [
     {
       "id": 1,

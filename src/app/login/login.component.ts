@@ -13,8 +13,9 @@ import { AppComponent } from '../app.component';
 export class LoginComponent {
 
   loginForm: FormGroup|any;
+  username: any;
   
-  constructor(private _authService:AuthenticationService, private router: Router, private _toast:ToastrService, private accueil: AppComponent){}
+  constructor(private _authService:AuthenticationService, private router: Router, private _toast:ToastrService,){}
 
   ngOnInit(): void{
     this.loginForm = new FormGroup({
@@ -25,7 +26,8 @@ export class LoginComponent {
 
   submit(loginForm:FormGroup) {
     const { username, password } = this.loginForm.value;
-    console.log(this.loginForm.value);
+    this.username = username;
+    // console.log(this.loginForm.value);
     console.log('Après', username, 'Mop', password);
     this._authService.login(username, password).subscribe(
       (data: any) => {
@@ -37,6 +39,7 @@ export class LoginComponent {
         this.router.navigateByUrl('/accueil', { skipLocationChange: true }).then(() => {
           this.router.navigate([this.router.url]);
           window.location.reload();
+          // this.showWelcome();
         });
         // this.router.navigateByUrl(['/acceuil'], {});
       },
@@ -50,5 +53,9 @@ export class LoginComponent {
 
   public showError():void {
     this._toast.error('Identifiants incorrectes');
+  }
+  
+  public showWelcome():void {
+    this._toast.info('Bienvenue :', this.username);
   }
 }

@@ -15,9 +15,13 @@ import { DatePipe } from '@angular/common';
 import { FournitureComponent } from './fourniture/fourniture.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { CommandeComponent } from './commande/commande.component';
+import { AjoutcommandeComponent } from './commande/ajoutcommande/ajoutcommande.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategorieComponent, canActivate: [AuthGuard] },
   { path: 'fournitures', component: FournitureComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
@@ -31,7 +35,10 @@ const routes: Routes = [
     FooterComponent,
     CategorieComponent,
     FournitureComponent,
-    LoginComponent
+    LoginComponent,
+    CommandeComponent,
+    AjoutcommandeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

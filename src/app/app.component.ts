@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 declare var $: any; 
 
@@ -14,7 +14,7 @@ declare var $: any;
 export class AppComponent implements OnInit {
   title = 'gestock-fb-2';
   name = 'Jquery Integration With Angular!';  
-  
+  isAuthenticated = false;
   isJqueryWorking: any;  
   // ngOnInit()  
   // {  
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   //   }); 
      
   // } 
-  constructor(public router: Router){}
+  constructor(private route: ActivatedRoute, private router: Router, ){}
 
   ngOnInit() {
     (() => {
@@ -78,6 +78,9 @@ export class AppComponent implements OnInit {
       //   e.preventDefault();
       // });
     })();
+
+    const authToken = localStorage.getItem('token');
+    this.isAuthenticated = (authToken !== null);
   }
 
   logout() {
@@ -88,6 +91,11 @@ export class AppComponent implements OnInit {
 
     // Redirect the user to the login page or any other appropriate page.
     this.router.navigate(['/login']);
+  }
+
+  login() {
+    // your login logic here
+    window.location.reload();
   }
   
   

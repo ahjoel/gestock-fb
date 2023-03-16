@@ -26,13 +26,19 @@ export class LoginComponent {
   submit(loginForm:FormGroup) {
     const { username, password } = this.loginForm.value;
     console.log(this.loginForm.value);
+    console.log('Après', username, 'Mop', password);
     this._authService.login(username, password).subscribe(
       (data: any) => {
         // Store the token in local storage or a cookie
         localStorage.setItem('token', data.token);
         // Redirect the user to the home page
         // this.accueil.reloadPage();
-        this.router.navigate(['/']);
+        // this.router.navigate(['/accueil']);
+        this.router.navigateByUrl('/accueil', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.router.url]);
+          window.location.reload();
+        });
+        // this.router.navigateByUrl(['/acceuil'], {});
       },
       (error: any) => {
         // Handle login errors

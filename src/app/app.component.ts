@@ -91,11 +91,11 @@ export class AppComponent implements OnInit {
 
     // Redirect the user to the login page or any other appropriate page.
     
-    // this.router.navigate(['/login']);
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([this.router.url]);
-      window.location.reload();
-    });
+    // this.router.navigate(['']);
+    // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    //   this.router.navigate([this.router.url]);
+    //   window.location.reload();
+    // });
   }
 
   login() {

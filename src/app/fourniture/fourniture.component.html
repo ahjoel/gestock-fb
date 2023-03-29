@@ -1,6 +1,6 @@
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Fourniure</h1>
+    <h1 class="h3 mb-0 text-gray-800">Fourniture</h1>
 
     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="addmodel()">
         <i class="fas fa-plus fa-sm text-white-50"></i> Ajouter</button>
@@ -25,15 +25,6 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <!-- <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Libellé</th>
-                        <th>Date création</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot> -->
                 <tbody>
                     <tr *ngFor="let fourniture of data; let i = index;">
                         <td>{{i+1}}</td>

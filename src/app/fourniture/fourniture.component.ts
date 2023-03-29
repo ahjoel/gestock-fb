@@ -55,6 +55,7 @@ export class FournitureComponent {
    
   }
 
+  // Use join to perform show data with fourniture and categorie
   getData(){
     this._fournitureService.getFournitures().subscribe(fournitures=>{
       this._fournitureService.getCategories().subscribe(categories=>{

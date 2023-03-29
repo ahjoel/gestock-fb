@@ -1,1 +1,123 @@
-<p>ajoutcommande works!</p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Enregistrement Commande</h1>
+
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" routerLink="/commandes">
+        <i class="fas fa-arrow-left fa-sm text-white-50" style="margin-right: 5px;"></i>Liste Commande</a>
+</div>
+
+<form #form_commande="ngForm" (submit)="onSubmit()">
+<div class="card shadow mb-4">
+    <!-- <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-primary">Enregistrement de Commande</h6>
+    </div> -->
+    <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Code Commande</label>
+                <input type="text" class="form-control" readonly [(ngModel)]="codeCommande"  name="codeCommande">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Date Commande</label>
+                <input type="date" class="form-control" required [(ngModel)]="dateCommande" name="dateCommande">
+              </div>
+            </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-5">
+        <!-- Default Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-1 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                Création de Ligne Commande
+                </h6>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm">
+                    <div class="form-group">
+                      <label>Fourniture</label>
+                      <select #FounitureId="ngModel" name="FounitureId" required [(ngModel)]="ligneCommandeObjet.FounitureId" class="form-control">
+                        <option selected value="">Choisir une fourniture</option>
+                        <option *ngFor="let fourniture of fournitures" [value]="fourniture.id">{{fourniture.code}} {{fourniture.libelle}} - {{fourniture.base}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Quantité Commandée</label>
+                      <input type="number" class="form-control" name="Qte" #Qte="ngModel" required [(ngModel)]="ligneCommandeObjet.Qte">
+                    </div>
+                    
+                    <button type="reset" class="btn btn-sm btn-warning" id="btn-cancel">Annuler</button>
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-left: 5px;" [disabled]="form.invalid" *ngIf="!isedit" (click)="onSave()">Ajouter</button>
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-left: 5px;" [disabled]="form.invalid" *ngIf="isedit" (click)="onUpdate(ligneCommandeObjet)">Modifier</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+
+        <!-- Dropdown Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                class="card-header py-1 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Liste de Ligne Commande</h6>
+            </div>
+            <div class="card-body">    
+                <div class="table-responsive-sm">          
+                    <table class="table table-bordered" id="table_2">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Fourniture</th>
+                          <th>Qte Commandée</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngIf="data?.length !=0">
+                          <tr *ngFor="let item of data; let lg = index">
+                            <td>{{lg+1}}</td>
+                            <td>{{item.fourniture?.code}} {{item.fourniture?.libelle}} - {{item.fourniture?.base}}</td>
+                            <td>{{item.Qte}}</td>
+                            <td>
+                              <a class="btn btn-info btn-circle btn-sm" (click)="onEdit(item)">
+                                <i class="fas fa-pen"></i>
+                              </a>
+                              <a class="btn btn-danger btn-circle btn-sm" (click)="onDelete(item)">
+                                  <i class="fas fa-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </ng-container>
+
+                        <ng-container *ngIf="data?.length == 0">
+                          <tr>
+                            <td colspan="4" class="text-center">Aucun Enregistrement</td>
+                          </tr>
+                        </ng-container>
+                        
+                      </tbody>
+                    </table>
+                    </div>
+            </div>
+
+            
+                
+            
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"></h1>
+    <button type="submit" [disabled]="form_commande.invalid" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50" style="margin-right: 5px;"></i>Enregistrer Commande
+    </button>
+</div>
+
+</form>

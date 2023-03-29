@@ -36,6 +36,11 @@
       "code": "GEST-PAP",
       "libelle": "GESTION DE PAPIER",
       "id": 4
+    },
+    {
+      "code": "TEST",
+      "libelle": "TEST MAJ",
+      "id": 5
     }
   ],
   "fournitures": [
@@ -54,6 +59,44 @@
       "base": "UNITE",
       "seuil": 10,
       "id": 2
+    }
+  ],
+  "commandes": [
+    {
+      "codeCommande": "CMD290320231",
+      "dateCommande": "2023-03-29",
+      "id": 1
+    },
+    {
+      "codeCommande": "CMD290320232",
+      "dateCommande": "2023-03-30",
+      "id": 2
+    }
+  ],
+  "lignes_commandes": [
+    {
+      "CommandeId": 1,
+      "FounitureId": 2,
+      "Qte": 2,
+      "id": 1
+    },
+    {
+      "CommandeId": 1,
+      "FounitureId": 1,
+      "Qte": 1,
+      "id": 2
+    },
+    {
+      "CommandeId": 2,
+      "FounitureId": 1,
+      "Qte": 3,
+      "id": 3
+    },
+    {
+      "CommandeId": 2,
+      "FounitureId": 2,
+      "Qte": 4,
+      "id": 4
     }
   ],
   "users": [

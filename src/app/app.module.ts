@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -24,6 +26,14 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategorieComponent, canActivate: [AuthGuard] },
   { path: 'fournitures', component: FournitureComponent, canActivate: [AuthGuard] },
+  { path: 'commandes', component: CommandeComponent, canActivate: [AuthGuard] },
+  { path: 'commandes/ajout_commande', component: AjoutcommandeComponent, canActivate: [AuthGuard] },
+  // {
+  //   path: 'commandes', component: CommandeComponent,
+  //   children: [
+  //     { path: 'ajout_commande', component: AjoutcommandeComponent },
+  //   ],canActivate: [AuthGuard]
+  // },
   { path: 'login', component: LoginComponent },
 ]
 
@@ -43,6 +53,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
       closeButton:true, 

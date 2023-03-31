@@ -20,6 +20,7 @@ import { AuthGuard } from './auth.guard';
 import { CommandeComponent } from './commande/commande.component';
 import { AjoutcommandeComponent } from './commande/ajoutcommande/ajoutcommande.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchPipe } from './pipe/search.pipe';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard] },
@@ -48,7 +49,8 @@ const routes: Routes = [
     LoginComponent,
     CommandeComponent,
     AjoutcommandeComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

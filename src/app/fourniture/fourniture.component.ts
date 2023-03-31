@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { SearchPipe } from '../pipe/search.pipe';
 import { FournitureService } from '../service/fourniture.service';
 
 interface Order {
@@ -20,7 +21,8 @@ interface Customer {
 @Component({
   selector: 'app-fourniture',
   templateUrl: './fourniture.component.html',
-  styleUrls: ['./fourniture.component.css']
+  styleUrls: ['./fourniture.component.css'],
+  providers: [SearchPipe]
 })
 export class FournitureComponent {
 
@@ -34,11 +36,17 @@ export class FournitureComponent {
   selectedValue: any;
   transformedData: any;
   item: any;
+  searchText: string;
+  sortProperty: string = 'id';
+  sortOrder = 1;
 
   constructor(
     private _fournitureService:FournitureService,
     private _toast:ToastrService,
-  ){}
+    private searchPipe: SearchPipe
+  ){
+    this.searchText = '';
+  }
 
   ngOnInit(): void {
     this.fournitureForm = new FormGroup({
@@ -53,6 +61,36 @@ export class FournitureComponent {
     // this.getOrdersCustomers();
     // 
    
+  }
+
+  // Tri par colonne
+  sortBy(property: string) {
+    this.sortOrder = property === this.sortProperty ? (this.sortOrder * -1) : 1;
+    this.sortProperty = property;
+    this.data = [...this.data.sort((a: any, b: any) => {
+        // sort comparison function
+        let result = 0;
+        if (a[property] < b[property]) {
+            result = -1;
+        }
+        if (a[property] > b[property]) {
+            result = 1;
+        }
+        return result * this.sortOrder;
+    })];
+  }
+
+  // Affichage de l'icone selon le tri
+  sortIcon(property: string) {
+    if (property === this.sortProperty) {
+        return this.sortOrder === 1 ? '🔼' : '🔽';
+    }
+    return '';
+  }
+
+  // Recherche avec sur le libellé de la catégorie
+  filteredItems(): any[] {
+    return this.searchPipe.transform(this.data, this.searchText);
   }
 
   // Use join to perform show data with fourniture and categorie

@@ -9,30 +9,32 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Liste Catégories</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Liste Catégories
+            <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data.length}}</span>
+        </h6>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="row">
+            <div class="col-sm-3 col-md-8">
+                <div>
+                    <label>
+                        <input type="text" [(ngModel)]="searchText" placeholder="Recherche avec libellé" class="form-control" />
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-wrapper">
             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Code</th>
-                        <th>Libellé</th>
+                        <th (click)="sortBy('id')">Libellé {{sortIcon('id')}}</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <!-- <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Libellé</th>
-                        <th>Date création</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot> -->
                 <tbody>
-                    <tr *ngFor="let categorie of data; let i = index;">
+                    <tr *ngFor="let categorie of data|search: searchText let i = index;">
                         <td>{{i+1}}</td>
                         <td>{{categorie.code}}</td>
                         <td>{{categorie.libelle}}</td>

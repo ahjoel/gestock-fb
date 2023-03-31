@@ -47,7 +47,7 @@
     {
       "code": "AGR",
       "libelle": "AGRAFFE",
-      "category_id": 2,
+      "category_id": 3,
       "base": "BOITE",
       "seuil": 10,
       "id": 1
@@ -59,6 +59,14 @@
       "base": "UNITE",
       "seuil": 10,
       "id": 2
+    },
+    {
+      "code": "RAM",
+      "libelle": "RAMMETTE",
+      "category_id": 4,
+      "base": "CARTON",
+      "seuil": 10,
+      "id": 3
     }
   ],
   "commandes": [

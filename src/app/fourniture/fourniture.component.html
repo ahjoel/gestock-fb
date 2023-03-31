@@ -9,16 +9,27 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Liste Fournitures</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Liste Fournitures
+            <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data.length}}</span>
+        </h6>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="row">
+            <div class="col-sm-3 col-md-8">
+                <div>
+                    <label>
+                        <input type="text" [(ngModel)]="searchText" placeholder="Recherche de Fourniture" class="form-control" />
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-wrapper">
             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Code</th>
-                        <th>Fourniture</th>
+                        <th (click)="sortBy('id')">Fourniture  {{sortIcon('id')}}</th>
                         <th>Catégorie</th>
                         <th>Base</th>
                         <th>Seuil(Qte Min)</th>
@@ -26,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let fourniture of data; let i = index;">
+                    <tr *ngFor="let fourniture of data|search:searchText; let i = index;">
                         <td>{{i+1}}</td>
                         <td>{{fourniture.code}}</td>
                         <td>{{fourniture.libelle}}</td>

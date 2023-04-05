@@ -13,38 +13,37 @@ export class FournitureService {
 
   constructor(private _Http: HttpClient) { }
 
+  // Recuperation de fournitures
   getData(): Observable<any> {
     return this._Http.get(this.apiurl);
   }
 
+  // Recuperation de fournitures
   getFournitures(): Observable<any> {
     return this._Http.get(this.apiurl);
   }
 
+  // Recuperation de categories
   getCategories(): Observable<any> {
     return this._Http.get(this.apiurl_categories);
   }
 
-  getOrders(): Observable<any> {
-    return this._Http.get('http://localhost:3000/orders');
-  }
-
-  getCustomers(): Observable<any> {
-    return this._Http.get('http://localhost:3000/customers')
-  }
-
+  // Recuperation de categories
   getDataListCategories(): Observable<any> {
     return this._Http.get(this.apiurl_categories);
   }
 
+  // Enregistrement de fournitures
   postdata(fourniture:any){
     return this._Http.post(this.apiurl, fourniture)
   }
 
+  // Modification de fournitures
   update(id:any, fourniture:any){
     return this._Http.put(`${this.apiurl}/${id}`, fourniture)
   }
 
+  // Suppression de fournitures
   delete(id:any, fourniture:any){
     return this._Http.delete(`${this.apiurl}/${id}`, fourniture)
   }

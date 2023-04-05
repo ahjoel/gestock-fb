@@ -187,7 +187,7 @@ export class AjoutcommandeComponent implements OnInit{
       const oldData = JSON.parse(isData);
       for (let index = 0; index < oldData.length; index++) {
         if (oldData[index].LigneCommandeId == ligneCommandeObjet.LigneCommandeId){
-          // Convert skill select value to integer
+          // Convert fournitureID select value to integer
           this.ligneCommandeObjet.FounitureId = parseInt(this.ligneCommandeObjet.FounitureId.toString(), 10);
           oldData[index] = this.ligneCommandeObjet;
         }

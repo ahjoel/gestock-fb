@@ -10,7 +10,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Liste Fournitures
-            <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data.length}}</span>
+            <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data?.length}}</span>
         </h6>
     </div>
     <div class="card-body">
@@ -33,6 +33,7 @@
                         <th>Catégorie</th>
                         <th>Base</th>
                         <th>Seuil(Qte Min)</th>
+                        <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@
                         <td>{{fourniture.categorie?.libelle}}</td>
                         <td>{{fourniture.base}}</td>
                         <td>{{fourniture.seuil}}</td>
+                        <td>Active</td>
                         <td>
                             <button  class="btn btn-info btn-circle btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(i, fourniture)">
                                 <i class="fas fa-pen"></i>

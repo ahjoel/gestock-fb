@@ -81,6 +81,8 @@ export class CategorieComponent {
     this._categorieService.getData().subscribe(res=>{
       this.data = res;
       // console.log(this.data);
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -92,6 +94,8 @@ export class CategorieComponent {
       this.showInfo();
       this.getData();
       // this.categorieForm.reset()
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -104,6 +108,8 @@ export class CategorieComponent {
       this.showSuccess();
       this.getData();
       // this.categorieForm.reset()
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -131,11 +137,15 @@ export class CategorieComponent {
   // Suppression d'une donnée
   delete(index:number, categorie:any){
     this.categorieForm.id = categorie.id;
-    this._categorieService.delete(this.categorieForm.id, categorie).subscribe(res=>{
-      this.data.splice(index, 1);
-      this.showError();
-      // this.categorieForm.reset()
-    })
+    if(confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?")) {
+      this._categorieService.delete(this.categorieForm.id, categorie).subscribe(res=>{
+        this.data.splice(index, 1);
+        this.showError();
+        // this.categorieForm.reset()
+      },(error) => {
+        console.log(error);
+      })
+    }
   }
 
   public showSuccess():void {

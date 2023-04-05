@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "categories": [
     {
       "code": "ADM",
@@ -36,11 +19,6 @@
       "code": "GEST-PAP",
       "libelle": "GESTION DE PAPIER",
       "id": 4
-    },
-    {
-      "code": "TEST",
-      "libelle": "TEST MAJ",
-      "id": 5
     }
   ],
   "fournitures": [
@@ -59,14 +37,6 @@
       "base": "UNITE",
       "seuil": 10,
       "id": 2
-    },
-    {
-      "code": "RAM",
-      "libelle": "RAMMETTE",
-      "category_id": 4,
-      "base": "CARTON",
-      "seuil": 10,
-      "id": 3
     }
   ],
   "commandes": [
@@ -99,12 +69,54 @@
       "FounitureId": 1,
       "Qte": 3,
       "id": 3
+    }
+  ],
+  "livraisons": [
+    {
+      "codeLivraison": "ENT050420231",
+      "dateLivraison": "2023-04-05",
+      "fournisseur": "SOTIMEX",
+      "id": 1
+    }
+  ],
+  "lignes_livraisons": [
+    {
+      "LivraisonId": 1,
+      "FounitureId": 2,
+      "Qte": 5,
+      "Prix": 5000,
+      "id": 1
     },
     {
-      "CommandeId": 2,
+      "LivraisonId": 1,
+      "FounitureId": 1,
+      "Qte": 10,
+      "Prix": 200,
+      "id": 2
+    }
+  ],
+  "lignes_mouvements": [
+    {
+      "dateMouvement": "05/04/2023 23:36:31",
+      "LigneLivraisonId": 1,
       "FounitureId": 2,
-      "Qte": 4,
-      "id": 4
+      "Qte": 5,
+      "Prix": 5000,
+      "QteDispo": 5,
+      "Mode": "Ajout",
+      "Statut": "Active",
+      "id": 1
+    },
+    {
+      "dateMouvement": "05/04/2023 23:36:31",
+      "LigneLivraisonId": 2,
+      "FounitureId": 1,
+      "Qte": 10,
+      "Prix": 200,
+      "QteDispo": 10,
+      "Mode": "Ajout",
+      "Statut": "Active",
+      "id": 2
     }
   ],
   "users": [
@@ -121,32 +133,6 @@
       "pseudo": "Invité",
       "password": "invite",
       "id": 2
-    }
-  ],
-  "orders": [
-    {
-      "id": 1,
-      "customer_id": 1,
-      "order_date": "2023-03-13T22:00:00.000Z",
-      "total_amount": 100
-    },
-    {
-      "id": 2,
-      "customer_id": 2,
-      "order_date": "2023-03-13T23:00:00.000Z",
-      "total_amount": 150
-    }
-  ],
-  "customers": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com"
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com"
     }
   ]
 }

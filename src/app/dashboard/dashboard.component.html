@@ -32,15 +32,17 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item" routerLinkActive="active" [class.active]="router.isActive('/commandes', true)">
+            <li class="nav-item" routerLinkActive="active" [class.active]="router.isActive('/commandes', true)"
+             [class.active]="router.isActive('/commandes/ajout_commande', true)">
                 <a class="nav-link" routerLink="/commandes">
                     <i class="fas fa-list"></i>
                     <span>Commande</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item" routerLinkActive="active" [class.active]="router.isActive('/livraisons', true)"
+            routerLinkActive="active" [class.active]="router.isActive('/livraisons/ajout_livraison', true)">
+                <a class="nav-link" routerLink="/livraisons">
                     <i class="far fa-arrow-alt-circle-right"></i>
                     <span>Livraison</span></a>
             </li>

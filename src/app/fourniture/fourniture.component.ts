@@ -105,7 +105,11 @@ export class FournitureComponent {
           }
         })
         // console.log(this.data);
+      },(error) => {
+        console.log(error);
       })
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -130,6 +134,8 @@ export class FournitureComponent {
   getDataCategories(){
     this._fournitureService.getDataListCategories().subscribe(res=>{
       this.categories = res;
+    },(error) => {
+      console.log(error);
     })
   }
   
@@ -145,6 +151,8 @@ export class FournitureComponent {
     this._fournitureService.postdata(data_convert).subscribe(res=>{
       this.showSuccess();
       this.getData();
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -162,6 +170,8 @@ export class FournitureComponent {
     this._fournitureService.update(this.fournitureForm.id, data_convert).subscribe(res=>{
       this.showInfo();
       this.getData();
+    },(error) => {
+      console.log(error);
     })
   }
 
@@ -179,10 +189,14 @@ export class FournitureComponent {
 
   delete(index:number, fourniture:any){
     this.fournitureForm.id = fourniture.id;
-    this._fournitureService.delete(this.fournitureForm.id, fourniture).subscribe(res=>{
-      this.data.splice(index, 1);
-      this.showError();
-    })
+    if(confirm("Êtes-vous sûr de vouloir supprimer cette fourniture ?")) { 
+      this._fournitureService.delete(this.fournitureForm.id, fourniture).subscribe(res=>{
+        this.data.splice(index, 1);
+        this.showError();
+      },(error) => {
+        console.log(error);
+      })
+    }
   }
 
   addmodel(){

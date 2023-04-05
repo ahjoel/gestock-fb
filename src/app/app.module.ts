@@ -21,6 +21,8 @@ import { CommandeComponent } from './commande/commande.component';
 import { AjoutcommandeComponent } from './commande/ajoutcommande/ajoutcommande.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchPipe } from './pipe/search.pipe';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { AjoutlivraisonComponent } from './livraison/ajoutlivraison/ajoutlivraison.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard] },
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'fournitures', component: FournitureComponent, canActivate: [AuthGuard] },
   { path: 'commandes', component: CommandeComponent, canActivate: [AuthGuard] },
   { path: 'commandes/ajout_commande', component: AjoutcommandeComponent, canActivate: [AuthGuard] },
+  { path: 'livraisons', component: LivraisonComponent, canActivate: [AuthGuard] },
+  { path: 'livraisons/ajout_livraison', component: AjoutlivraisonComponent, canActivate: [AuthGuard] },
   // {
   //   path: 'commandes', component: CommandeComponent,
   //   children: [
@@ -50,7 +54,9 @@ const routes: Routes = [
     CommandeComponent,
     AjoutcommandeComponent,
     DashboardComponent,
-    SearchPipe
+    SearchPipe,
+    LivraisonComponent,
+    AjoutlivraisonComponent
   ],
   imports: [
     BrowserModule,

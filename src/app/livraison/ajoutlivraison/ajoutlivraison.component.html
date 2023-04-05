@@ -1,0 +1,144 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Enregistrement Livraison</h1>
+
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" routerLink="/livraisons">
+        <i class="fas fa-arrow-left fa-sm text-white-50" style="margin-right: 5px;"></i>Liste Livraison</a>
+</div>
+
+<form #form_livraison="ngForm" (submit)="onSubmit()">
+<div class="card shadow mb-4">
+    <!-- <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-primary">Enregistrement de Commande</h6>
+    </div> -->
+    <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label>Code Livraison</label>
+                <input type="text" class="form-control" readonly [(ngModel)]="codeLivraison"  name="codeLivraison">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Date Livraison</label>
+                <input type="date" class="form-control" required [(ngModel)]="dateLivraison" name="dateLivraison">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Fournisseur</label>
+                <input type="text" class="form-control" required [(ngModel)]="fournisseur" name="fournisseur">
+              </div>
+            </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <!-- Default Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-1 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                Création de Ligne Livraison
+                </h6>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm">
+                    <div class="form-group">
+                      <label>Commande Fourniture</label>
+                      <select #FounitureId="ngModel" name="LigneCommandeId" required [(ngModel)]="ligneLivraisonObjet.LigneCommandeId" (change)="onChangeCommande()" class="form-control">
+                        <option selected value="">Choisir une commande</option>
+                        <option *ngFor="let lcommande of lcommandes" [value]="lcommande.id">{{lcommande.commande?.codeCommande}} {{lcommande.fourniture?.libelle}} - {{lcommande.fourniture?.base}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Fourniture</label>
+                      <select #FounitureId="ngModel" name="FounitureId" required [(ngModel)]="ligneLivraisonObjet.FounitureId" class="form-control">
+                        <option selected value="">Choisir une fourniture</option>
+                        <option *ngFor="let fourniture of data" [value]="fourniture.fourniture?.id">{{fourniture.fourniture?.code}} {{fourniture.fourniture?.libelle}} - {{fourniture.fourniture?.base}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Quantité Livrée</label>
+                      <input type="number" class="form-control" name="Qte" #Qte="ngModel" required [(ngModel)]="ligneLivraisonObjet.Qte">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Prix d'Achat</label>
+                      <input type="number" class="form-control" name="Prix" #Prix="ngModel" required [(ngModel)]="ligneLivraisonObjet.Prix">
+                    </div>
+                    
+                    <button type="reset" class="btn btn-sm btn-warning" id="btn-cancel">Annuler</button>
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-left: 5px;" [disabled]="form.invalid" *ngIf="!isedit" (click)="onSave()">Ajouter</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+
+        <!-- Dropdown Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-1 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Liste de Ligne Livraison
+                </h6>
+                <span style="float: right; color:rgb(243, 101, 101); font-style: bold">Total : {{formatNumberWithCommas(total)}}</span>
+            </div>
+            <div class="card-body">    
+                <div class="table-responsive-sm table-wrapper">          
+                    <table class="table table-bordered" id="table_2">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Ref - Date Commande</th>
+                          <th>Fourniture</th>
+                          <th>Qte Livrée</th>
+                          <th>Prix Unit.</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngIf="datas?.length !=0">
+                          <tr *ngFor="let item of datas; let lg = index">
+                            <td>{{lg+1}}</td>
+                            <td>{{item.commandes?.codeCommande}} - {{item.commandes?.dateCommande}}</td>
+                            <td>{{item.fourniture?.code}} {{item.fourniture?.libelle}} - {{item.fourniture?.base}}</td>
+                            <td>{{item.Qte}}</td>
+                            <td>{{item.Prix}}</td>
+                            <td>
+                              <!-- <a class="btn btn-info btn-circle btn-sm" (click)="onEdit(item)">
+                                <i class="fas fa-pen"></i>
+                              </a> -->
+                              <a class="btn btn-danger btn-circle btn-sm" (click)="onDelete(item)">
+                                  <i class="fas fa-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </ng-container>
+
+                        <ng-container *ngIf="datas?.length == 0">
+                          <tr>
+                            <td colspan="6" class="text-center">Aucun Enregistrement</td>
+                          </tr>
+                        </ng-container>
+                        
+                      </tbody>
+                    </table>
+                    </div>
+            </div>
+
+            
+                
+            
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"></h1>
+    <button type="submit" [disabled]="form_livraison.invalid" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50" style="margin-right: 5px;"></i>Enregistrer Livraison
+    </button>
+</div>
+
+</form>

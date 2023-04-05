@@ -1,8 +1,8 @@
   <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Commande</h1>
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Livraison</h1>
 
-    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" routerLink="ajout_commande">
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" routerLink="ajout_livraison">
         <i class="fas fa-plus fa-sm text-white-50"></i> Ajouter</a>
 </div>
 
@@ -10,8 +10,8 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
-            Liste Commandes
-            <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data?.length}}</span>
+            Liste Livraisons
+            <!-- <span style="float: right; color:rgb(243, 101, 101); font-style: bold">{{data?.length}}</span> -->
         </h6>
     </div>
     <div class="card-body">
@@ -21,15 +21,14 @@
                     <tr>
                         <th>#</th>
                         <th>Reference</th>
-                        <th>Date Commande</th>
+                        <th>Date Livraison</th>
                         <th>Fourniture</th>
-                        <th>Qte</th>
-                        <th>Statut</th>
+                        <th>Qte Livré</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lcommande of data; let i = index;">
+                    <!-- <tr *ngFor="let lcommande of data; let i = index;">
                         <td>{{i+1}}</td>
                         <td>{{lcommande.commande?.codeCommande}}</td>
                         <td>{{lcommande.commande?.dateCommande}}</td>
@@ -44,7 +43,7 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
-                    </tr>                    
+                    </tr>                     -->
                 </tbody>
             </table>
         </div>
@@ -63,13 +62,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <form [formGroup]="commandeForm" (ngSubmit)="update(commandeForm)">
+                <!-- <form [formGroup]="commandeForm" (ngSubmit)="update(commandeForm)"> -->
                     <!-- Code input -->
                     <div class="form-outline mb-4">
                         <label class="form-label">Reference - Date Commande</label>
                         <select class="form-control" formControlName="CommandeId" id="CommandeId" autocomplete="off">
                             <option value="">Sélectionnez une référence</option>
-                            <option *ngFor="let cmd of commandes" [value]="cmd.id">{{ cmd.codeCommande }} - {{ cmd.dateCommande }}</option>
+                            <!-- <option *ngFor="let cmd of commandes" [value]="cmd.id">{{ cmd.codeCommande }} - {{ cmd.dateCommande }}</option> -->
                         </select>
                     </div>
  
@@ -78,7 +77,7 @@
                         <label class="form-label">Fourniture</label>
                         <select class="form-control" formControlName="FounitureId" id="FounitureId" autocomplete="off">
                             <option value="">Sélectionnez une fourniture</option>
-                            <option *ngFor="let fournit of fournitures" [value]="fournit.id">{{fournit.libelle }}</option>
+                            <!-- <option *ngFor="let fournit of fournitures" [value]="fournit.id">{{fournit.libelle }}</option> -->
                         </select>
                     </div>
 
@@ -94,7 +93,7 @@
                     <!-- <button type="submit" class="btn btn-primary btn-block">Enregistrer</button> -->
                     <button type="reset" class="btn btn-warning">Annuler</button>
                     <button type="submit" class="btn btn-primary" style="margin-left: 5px;" data-bs-dismiss="modal">Modifier</button>
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
